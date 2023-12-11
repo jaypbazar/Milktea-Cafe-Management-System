@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MilkTea {
+public class MilkTea extends Product{
     private final String [] flavors = {"Dark Choco", "Oreo\t", "Matcha\t", "Okinawa\t",
             "Red Velvet", "Strawberry", "Honey Dew", "Taro\t"};
 
@@ -8,7 +8,8 @@ public class MilkTea {
 
     private final int [] prices = {29, 39};
 
-    public void displayMilkTea(){
+    @Override
+    public void displayProduct(){
         Scanner scan = new Scanner(System.in);
 
         while(true){
@@ -81,7 +82,8 @@ public class MilkTea {
             }
         }
     }
-    private void recordOrders(int flavorCode, int sizeCode){
+    @Override
+    public void recordOrders(int flavorCode, int sizeCode){
         Map<String, Object> order = new HashMap<>();
         order.put("flavor", flavors[flavorCode-1].replaceAll("\\s", ""));
         order.put("size", sizes[sizeCode-1]);

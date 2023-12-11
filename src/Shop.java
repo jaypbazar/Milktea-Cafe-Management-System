@@ -52,8 +52,8 @@ public class Shop {
     }
 
     public static void displayMenu(){
-
-        Scanner scan = new Scanner(System.in); // Instantiate Scanner Object
+        // Instantiate Objects for Scanner, MilkTea, and Coffee
+        Scanner scan = new Scanner(System.in);
         MilkTea milktea = new MilkTea();
         Coffee coffee = new Coffee();
 
@@ -78,12 +78,13 @@ public class Shop {
                 System.out.print("\nEnter the code of your choice: ");
                 int choice = scan.nextInt();
 
+                // Execute method according to user choice
                 switch (choice) {
                     case 1:
-                        milktea.displayMilkTea();
+                        milktea.displayProduct();
                         break;
                     case 2:
-                        coffee.displayCoffee();
+                        coffee.displayProduct();
                         break;
                     case 3:
                         displayWelcome();

@@ -1,13 +1,14 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Coffee {
-    String [] types = {"Espresso", "Americano", "Latt\u00e9\t", "Cappuccino",
+public class Coffee extends Product{
+    private final String [] types = {"Espresso", "Americano", "Latt\u00e9\t", "Cappuccino",
             "Mocha\t", "Macchiato", "Cold Brew", "Drip Coffee"};
 
-    int [] prices = {70, 100, 120, 130, 140, 120, 150, 80};
+    private final int [] prices = {70, 100, 120, 130, 140, 120, 150, 80};
 
-    void displayCoffee(){
+    @Override
+    public void displayProduct(){
         Scanner scan = new Scanner(System.in);
 
         while(true){
@@ -19,8 +20,8 @@ public class Coffee {
             System.out.println("|    Code    |              Type             |	 Price	|");
             System.out.println("|____________|_______________________________|__________|");
 
-            for (int i = 0; i < type.length; i++){
-                System.out.println("|     "+(i+1)+"\t     |\t\t"+ type[i] +"\t     |\t  "+ price[i] +"\t|");
+            for (int i = 0; i < types.length; i++){
+                System.out.println("|     "+(i+1)+"\t     |\t\t"+ types[i] +"\t     |\t  "+ prices[i] +"\t|");
                 System.out.println("|____________|_______________________________|__________|");
             }
 
@@ -41,5 +42,10 @@ public class Coffee {
                 scan.nextLine();
             }
         }
+    }
+
+    @Override
+    public void recordOrders(int typeCode, int priceCode) {
+
     }
 }
