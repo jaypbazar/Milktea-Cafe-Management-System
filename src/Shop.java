@@ -96,20 +96,20 @@ public class Shop {
         Main.clearConsole();
         double totalPrice = 0;
 
-        System.out.println("\t\tORDER DETAILS\n" +"\nProduct\t\tQuantity\tPrice");
+        System.out.println("\t\tORDER DETAILS\n" +"\nProduct\t\t    Quantity\t\t  Price");
         for (Map<String, Object> order : orders) {
             if (order.containsKey("flavor")) {
                 System.out.println(
                         order.get("size")+" "+order.get("flavor")+
-                        "\t    "+order.get("quantity")+
-                        "\t\t"+String.format("%.2f", Double.parseDouble(order.get("subtotal").toString()))
+                        "\t\t"+order.get("quantity")+
+                        "\t\t"+String.format("Php %.2f", Double.parseDouble(order.get("subtotal").toString()))
                 );
             }
             else {
                 System.out.println(
                         order.get("coffee_type") +
-                        "\t\t    "+order.get("quantity") +
-                        "\t\t"+String.format("%.2f", Double.parseDouble(order.get("subtotal").toString()))
+                        "\t\t"+order.get("quantity") +
+                        "\t\t"+String.format("Php %.2f", Double.parseDouble(order.get("subtotal").toString()))
                 );
             }
             totalPrice += (int) order.get("subtotal");
@@ -121,6 +121,7 @@ public class Shop {
             System.out.print("\nEnter payment: ");
             double payment = sc.nextDouble();
 
+            // If payment is less than total price, display error message and repeat
             if (payment < totalPrice) {
                 System.out.println("\nInsufficient Payment!!!\n");
                 throw new InputMismatchException();
@@ -131,6 +132,12 @@ public class Shop {
             System.out.printf("\nChange: Php %.2f",change);
 
             System.out.println("\n\nTHANK YOU FOR YOUR PURCHASE!!! PLEASE COME AGAIN!!!\n\n");
+
+            // Delay before going back to Welcome
+            System.out.println("Press enter to continue...");
+            sc.nextLine();
+            sc.nextLine();
+            displayWelcome();
         }
         catch (InputMismatchException e){ // Display error message if there is an error
             Main.displayErrorMessage();
