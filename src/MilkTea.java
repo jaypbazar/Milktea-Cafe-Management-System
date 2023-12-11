@@ -49,6 +49,7 @@ public class MilkTea extends Product{
 
             displaySelection(); // Display a selection
 
+            System.out.print("Choice: ");
             int choice = sc.nextInt();
 
             // Store the orders if not cancelled
@@ -67,7 +68,7 @@ public class MilkTea extends Product{
     private void recordOrders(int flavorCode, int sizeCode){
         // Store the order details in a Map
         Map<String, Object> order = new HashMap<>();
-        order.put("flavor", flavors[flavorCode-1].replaceAll("\\s", ""));
+        order.put("flavor", flavors[flavorCode-1].replaceAll("\\t", ""));
         order.put("size", sizes[sizeCode-1]);
         order.put("quantity", quantity);
         order.put("subtotal", prices[sizeCode-1]*quantity);

@@ -35,6 +35,7 @@ public class Coffee extends Product{
 
             displaySelection(); // Display a selection
 
+            System.out.print("Choice: ");
             int choice = sc.nextInt();
 
             // Store the orders if not cancelled
@@ -52,7 +53,7 @@ public class Coffee extends Product{
     private void recordOrders(int typeCode) {
         // Store the order details in a Map
         Map<String, Object> order = new HashMap<>();
-        order.put("coffee_type", types[typeCode-1].replaceAll("\\t", ""));
+        order.put("coffee_type", types[typeCode-1]);
         order.put("quantity", quantity);
         order.put("subtotal", prices[typeCode-1]*quantity);
 
