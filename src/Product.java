@@ -1,7 +1,10 @@
-import java.util.InputMismatchException;
+import java.util.*;
+import java.time.LocalDateTime;
 
 public abstract class Product {
+    protected static List<Map<String, Object>> orders;
     protected int quantity;
+    public static int orderNumber = 0;
 
     public abstract void displayProduct();
 
@@ -24,7 +27,11 @@ public abstract class Product {
             case 1: // Display the menu for additional orders
                 Shop.displayMenu();
                 break;
-            case 2: // Move to payment
+            case 2:
+                // Record Transaction after every order
+                Shop.transactions.add(orders);
+
+                // Calculate the total payment
                 Shop.calculateTotal();
                 break;
             case 3:

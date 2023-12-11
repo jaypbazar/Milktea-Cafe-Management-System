@@ -1,7 +1,5 @@
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Coffee extends Product{
     private final Scanner sc = Main.scanner;
@@ -39,7 +37,8 @@ public class Coffee extends Product{
             int choice = sc.nextInt();
 
             // Store the orders if not cancelled
-            if (choice != 3) {
+            if (choice == 1 || choice == 2) {
+                // Record the coffee orders
                 recordOrders(typeCode);
             }
 
@@ -55,9 +54,9 @@ public class Coffee extends Product{
         Map<String, Object> order = new HashMap<>();
         order.put("coffee_type", types[typeCode-1]);
         order.put("quantity", quantity);
-        order.put("subtotal", prices[typeCode-1]*quantity);
+        order.put("subtotal", prices[typeCode-1] * quantity);
 
         // Add the order to the List of orders
-        Shop.orders.add(order);
+        orders.add(order);
     }
 }

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class MilkTea extends Product{
@@ -54,6 +55,7 @@ public class MilkTea extends Product{
 
             // Store the orders if not cancelled
             if (choice == 1 || choice == 2) {
+                // Record the milk tea orders
                 recordOrders(flavorCode, sizeCode);
             }
 
@@ -71,9 +73,9 @@ public class MilkTea extends Product{
         order.put("flavor", flavors[flavorCode-1].replaceAll("\\t", ""));
         order.put("size", sizes[sizeCode-1]);
         order.put("quantity", quantity);
-        order.put("subtotal", prices[sizeCode-1]*quantity);
+        order.put("subtotal", prices[sizeCode-1] * quantity);
 
         // Add the order to the List of orders
-        Shop.orders.add(order);
+        orders.add(order);
     }
 }
