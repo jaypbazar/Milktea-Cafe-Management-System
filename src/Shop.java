@@ -1,15 +1,12 @@
 import java.util.*;
 
 public class Shop {
-    private static final Scanner scan = new Scanner(System.in);
+    private static final Scanner sc = Main.scanner;
     public static List<Map<String, Object>> orders = new ArrayList<>();
-    private static double payment;
-    private static int totalPrice;
+    private static double payment, totalPrice;
 
     // displayWelcome method
     public static void displayWelcome(){
-        Scanner scan = new Scanner(System.in); // Instantiate Scanner object
-
         while (true) { // Loop until user input is correct
 
             // Clear the console before printing anything
@@ -28,7 +25,7 @@ public class Shop {
 
             try{ // Check for errors on user input
                 System.out.print("\nEnter the code of your choice: ");
-                int choice = scan.nextInt();
+                int choice = sc.nextInt();
 
                 switch (choice) {
                     case 1:
@@ -49,7 +46,7 @@ public class Shop {
     }
 
     public static void displayMenu(){
-        // Instantiate Objects for Scanner, MilkTea, and Coffee
+        // Instantiate Objects for MilkTea and Coffee
         MilkTea milktea = new MilkTea();
         Coffee coffee = new Coffee();
 
@@ -72,7 +69,7 @@ public class Shop {
 
             try{ // Check for errors on user input
                 System.out.print("\nEnter the code of your choice: ");
-                int choice = scan.nextInt();
+                int choice = sc.nextInt();
 
                 // Execute method according to user choice
                 switch (choice) {
@@ -97,15 +94,40 @@ public class Shop {
     }
 
     public static void calculateTotal(){
-        for (Map<String, Object> order : orders) {
-            System.out.println(order);
+        Main.clearConsole();
+        totalPrice = 0;
 
+        System.out.println("\t\tORDER DETAILS\n" +"\nProduct\t\tQuantity\tPrice");
+        for (Map<String, Object> order : orders) {
+            if (order.containsKey("flavor")) {
+                System.out.println(
+                        order.get("size")+" "+order.get("flavor")+
+                        "\t    "+order.get("quantity")+
+                        "\t\t"+String.format("%.2f", Double.parseDouble(order.get("subtotal").toString()))
+                );
+            }
+            else {
+                System.out.println(
+                        order.get("coffee_type") +
+                        "\t\t    "+order.get("quantity") +
+                        "\t\t"+String.format("%.2f", Double.parseDouble(order.get("subtotal").toString()))
+                );
+            }
             totalPrice += (int) order.get("subtotal");
         }
-        try {
-            System.out.print("Enter payment: ");
-            payment = scan.nextDouble();
 
+        System.out.printf("\nTotal Price: Php %.2f%n",totalPrice);
+
+        try {
+            System.out.print("\nEnter payment: ");
+            payment = sc.nextDouble();
+            if (payment < totalPrice) throw new InputMismatchException("\nInsufficient Payment!!!\n");
+
+            // Calculate the change
+            double change = payment - totalPrice;
+            System.out.printf("\nChange: Php %.2f",change);
+
+            System.out.println("\n\nTHANK YOU FOR YOUR PURCHASE!!! PLEASE COME AGAIN!!!\n\n");
         }
         catch (InputMismatchException e){ // Display error message if there is an error
             Main.displayErrorMessage();

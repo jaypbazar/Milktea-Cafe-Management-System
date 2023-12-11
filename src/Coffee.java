@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Coffee extends Product{
+    private final Scanner sc = Main.scanner;
     private final String [] types = {"Espresso", "Americano", "Latt\u00e9\t", "Cappuccino",
             "Mocha\t", "Macchiato", "Cold Brew", "Drip Coffee"};
 
@@ -11,8 +12,6 @@ public class Coffee extends Product{
 
     @Override
     public void displayProduct(){
-        Scanner scan = new Scanner(System.in);
-
         Main.clearConsole();
 
         System.out.println(" _______________________________________________________ ");
@@ -28,7 +27,7 @@ public class Coffee extends Product{
 
         try{ // Check for errors on user input
             System.out.print("\nEnter the code of the coffee: ");
-            int typeCode = scan.nextInt();
+            int typeCode = sc.nextInt();
 
             if (typeCode < 1 || typeCode > types.length) throw new InputMismatchException();
 
@@ -36,7 +35,7 @@ public class Coffee extends Product{
 
             displaySelection(); // Display a selection
 
-            int choice = scan.nextInt();
+            int choice = sc.nextInt();
 
             // Store the orders if not cancelled
             if (choice != 3) {

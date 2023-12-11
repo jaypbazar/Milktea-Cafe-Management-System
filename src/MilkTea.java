@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class MilkTea extends Product{
+    private final Scanner sc = Main.scanner;
     private final String [] flavors = {"Dark Choco", "Oreo\t", "Matcha\t", "Okinawa\t",
             "Red Velvet", "Strawberry", "Honey Dew", "Taro\t"};
 
@@ -10,8 +11,6 @@ public class MilkTea extends Product{
 
     @Override
     public void displayProduct(){
-        Scanner scan = new Scanner(System.in);
-
         Main.clearConsole();
 
         try{ // Check for errors on user input
@@ -24,7 +23,7 @@ public class MilkTea extends Product{
             }
 
                 System.out.print("\nEnter the code of the size: ");
-                int sizeCode = scan.nextInt();
+                int sizeCode = sc.nextInt();
 
                 // Throw an exception if code is not in the choices
                 if (sizeCode < 1 || sizeCode > sizes.length) throw new InputMismatchException();
@@ -41,7 +40,7 @@ public class MilkTea extends Product{
             }
 
             System.out.print("\nEnter the code of the flavor: ");
-            int flavorCode = scan.nextInt();
+            int flavorCode = sc.nextInt();
 
             // Throw an exception if code is not in the choices
             if (flavorCode < 1 || flavorCode > flavors.length) throw new InputMismatchException();
@@ -50,7 +49,7 @@ public class MilkTea extends Product{
 
             displaySelection(); // Display a selection
 
-            int choice = scan.nextInt();
+            int choice = sc.nextInt();
 
             // Store the orders if not cancelled
             if (choice == 1 || choice == 2) {

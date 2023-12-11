@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         Shop.displayWelcome();
     }
@@ -20,13 +21,11 @@ public class Main {
     }
 
     public static void displayErrorMessage(){
-        Scanner scan = new Scanner(System.in);
-
         System.out.println("\nInvalid input! Please enter a valid input.");
-        scan.nextLine(); // Absorb the invalid input
+        scanner.nextLine(); // Absorb the invalid input
 
         // Delay program until user press enter
         System.out.println("\n\nPress enter to continue...");
-        scan.nextLine();
+        scanner.nextLine();
     }
 }

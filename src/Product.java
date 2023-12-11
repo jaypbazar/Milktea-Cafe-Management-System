@@ -1,5 +1,4 @@
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public abstract class Product {
     protected int quantity;
@@ -8,7 +7,7 @@ public abstract class Product {
 
     protected void askQuantity(){
         System.out.print("\nEnter the quantity: ");
-        quantity = new Scanner(System.in).nextInt();
+        quantity = Main.scanner.nextInt();
 
         // Throw an exception if quantity is less than 1
         if (quantity < 1) throw new InputMismatchException();
