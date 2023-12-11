@@ -106,6 +106,6 @@ public class Shop {
     }
 
     public static void calculateTotal(){
-
+        System.out.println(orders);
     }
 }
