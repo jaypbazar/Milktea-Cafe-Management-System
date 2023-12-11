@@ -2,12 +2,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Coffee {
-    String [] type = {"Espresso", "Americano", "Latté\t", "Cappuccino",
+    String [] types = {"Espresso", "Americano", "Latt\u00e9\t", "Cappuccino",
             "Mocha\t", "Macchiato", "Cold Brew", "Drip Coffee"};
 
-    int [] price = {70, 100, 120, 130, 140, 120, 150, 80};
-
-    int quantity;
+    int [] prices = {70, 100, 120, 130, 140, 120, 150, 80};
 
     void displayCoffee(){
         Scanner scan = new Scanner(System.in);

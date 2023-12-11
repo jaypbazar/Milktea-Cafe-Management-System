@@ -1,6 +1,9 @@
 import java.util.*;
 
 public class Shop {
+
+    public static List<Map<String, Object>> orders = new ArrayList<>();
+
     // displayWelcome method
     public static void displayWelcome(){
         Scanner scan = new Scanner(System.in); // Instantiate Scanner object
@@ -12,7 +15,7 @@ public class Shop {
 
             // Print the choices and command
             System.out.println(" ____________________________________________ ");
-            System.out.println("|          Welcome to Paimon's Café          |");
+            System.out.println("|          Welcome to Paimon's Caf\u00e9          |");
             System.out.println("|____________________________________________|");
             System.out.println("|    Code    |            Command            |");
             System.out.println("|____________|_______________________________|");
@@ -33,13 +36,9 @@ public class Shop {
                         System.out.println("\nThank you! Please come again.");
                         break;
                     default:
-                        System.out.println("\nInvalid choice! Please select a valid code.");
-                        scan.nextLine();
-
-                        System.out.println("\n\nPress enter to continue...");
-                        scan.nextLine();
+                        throw new InputMismatchException();
                 }
-                break; // break out of the loop if no errors ocurred
+                break; // break out of the loop if no errors occurred
             }
             catch(InputMismatchException e){ // Display error message if there is an error
                 System.out.println("\nInvalid input! Please enter a valid input.");
@@ -68,11 +67,11 @@ public class Shop {
             System.out.println("|____________________________________________|");
             System.out.println("|    Code    |           Products            |");
             System.out.println("|____________|_______________________________|");
-            System.out.println("|      1     |           Milktea             |");
+            System.out.println("|      1     |           MilkTea             |");
             System.out.println("|____________|_______________________________|");
             System.out.println("|      2     |            Coffee             |");
             System.out.println("|____________|_______________________________|");
-            System.out.println("|      3     |       Back to Welcome         |");
+            System.out.println("|      3     |         Cancel Order          |");
             System.out.println("|____________|_______________________________|");
 
             try{ // Check for errors on user input
@@ -81,7 +80,7 @@ public class Shop {
 
                 switch (choice) {
                     case 1:
-                        milktea.displayMilktea();
+                        milktea.displayMilkTea();
                         break;
                     case 2:
                         coffee.displayCoffee();
@@ -90,14 +89,7 @@ public class Shop {
                         displayWelcome();
                         break;
                     default:
-                        System.out.println("\nInvalid choice! Please select a valid code.");
-                        scan.nextLine();
-
-                        // Delay program until user press enter
-                        System.out.println("\n\nPress enter to continue...");
-                        scan.nextLine();
-
-                        continue;
+                        throw new InputMismatchException();
                 }
                 break; // break out of the loop if no errors occurred
             }
@@ -110,5 +102,9 @@ public class Shop {
                 scan.nextLine();
             }
         }
+    }
+
+    public static void calculateTotal(){
+
     }
 }
