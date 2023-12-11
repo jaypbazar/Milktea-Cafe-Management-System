@@ -40,7 +40,7 @@ public class Coffee extends Product{
 
             // Store the orders if not cancelled
             if (choice != 3) {
-                recordOrders(typeCode, quantity);
+                recordOrders(typeCode);
             }
 
             evaluateChoice(choice);
@@ -56,7 +56,7 @@ public class Coffee extends Product{
             Shop.displayMenu();
         }
     }
-    private void recordOrders(int typeCode, int quantity) {
+    private void recordOrders(int typeCode) {
         // Store the order details in a Map
         Map<String, Object> order = new HashMap<>();
         order.put("coffee_type", types[typeCode-1].replaceAll("\\t", ""));
