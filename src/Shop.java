@@ -1,8 +1,10 @@
 import java.util.*;
 
 public class Shop {
-
+    private static final Scanner scan = new Scanner(System.in);
     public static List<Map<String, Object>> orders = new ArrayList<>();
+    private static double payment;
+    private static int totalPrice;
 
     // displayWelcome method
     public static void displayWelcome(){
@@ -41,19 +43,13 @@ public class Shop {
                 break; // break out of the loop if no errors occurred
             }
             catch(InputMismatchException e){ // Display error message if there is an error
-                System.out.println("\nInvalid input! Please enter a valid input.");
-                scan.nextLine(); // Absorb the invalid input
-
-                // Delay program until user press enter
-                System.out.println("\n\nPress enter to continue...");
-                scan.nextLine();
+                Main.displayErrorMessage();
             }
         }
     }
 
     public static void displayMenu(){
         // Instantiate Objects for Scanner, MilkTea, and Coffee
-        Scanner scan = new Scanner(System.in);
         MilkTea milktea = new MilkTea();
         Coffee coffee = new Coffee();
 
@@ -95,17 +91,25 @@ public class Shop {
                 break; // break out of the loop if no errors occurred
             }
             catch(InputMismatchException e){ // Display error message if there is an error
-                System.out.println("\nInvalid input! Please enter a valid input.");
-                scan.nextLine(); // Absorb the invalid input
-
-                // Delay program until user press enter
-                System.out.println("\n\nPress enter to continue...");
-                scan.nextLine();
+                Main.displayErrorMessage();
             }
         }
     }
 
     public static void calculateTotal(){
-        System.out.println(orders);
+        for (Map<String, Object> order : orders) {
+            System.out.println(order);
+
+            totalPrice += (int) order.get("subtotal");
+        }
+        try {
+            System.out.print("Enter payment: ");
+            payment = scan.nextDouble();
+
+        }
+        catch (InputMismatchException e){ // Display error message if there is an error
+            Main.displayErrorMessage();
+            calculateTotal();
+        }
     }
 }

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,5 +17,16 @@ public class Main {
         } catch (IOException | InterruptedException e) {
             System.out.println("Error clearing the console!");
         }
+    }
+
+    public static void displayErrorMessage(){
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("\nInvalid input! Please enter a valid input.");
+        scan.nextLine(); // Absorb the invalid input
+
+        // Delay program until user press enter
+        System.out.println("\n\nPress enter to continue...");
+        scan.nextLine();
     }
 }

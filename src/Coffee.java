@@ -46,13 +46,7 @@ public class Coffee extends Product{
             evaluateChoice(choice);
         }
         catch(InputMismatchException e){ // Display error message if there is an error
-            System.out.println("\nInvalid input! Please enter a valid input.");
-            scan.nextLine(); // Absorb the invalid input
-
-            // Delay program until user press enter
-            System.out.println("\n\nPress enter to continue...");
-            scan.nextLine();
-
+            Main.displayErrorMessage();
             Shop.displayMenu();
         }
     }
