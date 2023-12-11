@@ -3,7 +3,6 @@ import java.util.*;
 public class Shop {
     private static final Scanner sc = Main.scanner;
     public static List<Map<String, Object>> orders = new ArrayList<>();
-    private static double payment, totalPrice;
 
     // displayWelcome method
     public static void displayWelcome(){
@@ -95,7 +94,7 @@ public class Shop {
 
     public static void calculateTotal(){
         Main.clearConsole();
-        totalPrice = 0;
+        double totalPrice = 0;
 
         System.out.println("\t\tORDER DETAILS\n" +"\nProduct\t\tQuantity\tPrice");
         for (Map<String, Object> order : orders) {
@@ -116,12 +115,16 @@ public class Shop {
             totalPrice += (int) order.get("subtotal");
         }
 
-        System.out.printf("\nTotal Price: Php %.2f%n",totalPrice);
+        System.out.printf("\nTotal Price: Php %.2f%n", totalPrice);
 
         try {
             System.out.print("\nEnter payment: ");
-            payment = sc.nextDouble();
-            if (payment < totalPrice) throw new InputMismatchException("\nInsufficient Payment!!!\n");
+            double payment = sc.nextDouble();
+
+            if (payment < totalPrice) {
+                System.out.println("\nInsufficient Payment!!!\n");
+                throw new InputMismatchException();
+            }
 
             // Calculate the change
             double change = payment - totalPrice;
